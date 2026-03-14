@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200" fill="none">
+  <rect width="300" height="200" rx="10" fill="#E6F0FF"/>
+  
+  <!-- Growth Chart -->
+  <path d="M50 150H250M50 150V50" stroke="#1E40AF" stroke-width="2"/>
+  
+  <!-- Chart Bars -->
+  <rect x="70" y="120" width="20" height="30" fill="#1E40AF"/>
+  <rect x="100" y="100" width="20" height="50" fill="#1E40AF"/>
+  <rect x="130" y="90" width="20" height="60" fill="#1E40AF"/>
+  <rect x="160" y="70" width="20" height="80" fill="#1E40AF"/>
+  <rect x="190" y="60" width="20" height="90" fill="#FFB800"/>
+  <rect x="220" y="50" width="20" height="100" fill="#FFB800"/>
+  
+  <!-- Growth Line -->
+  <path d="M80 120L110 100L140 90L170 70L200 60L230 50" stroke="#FF0000" stroke-width="2"/>
+  <circle cx="80" cy="120" r="3" fill="#FF0000"/>
+  <circle cx="110" cy="100" r="3" fill="#FF0000"/>
+  <circle cx="140" cy="90" r="3" fill="#FF0000"/>
+  <circle cx="170" cy="70" r="3" fill="#FF0000"/>
+  <circle cx="200" cy="60" r="3" fill="#FF0000"/>
+  <circle cx="230" cy="50" r="3" fill="#FF0000"/>
+  
+  <!-- Coins/Investment Icons -->
+  <circle cx="60" cy="40" r="10" fill="#FFB800"/>
+  <circle cx="60" cy="40" r="8" fill="#FFD700"/>
+  <text x="57" y="44" font-family="Arial" font-size="10" fill="#1E40AF">$</text>
+  
+  <circle cx="80" cy="30" r="10" fill="#FFB800"/>
+  <circle cx="80" cy="30" r="8" fill="#FFD700"/>
+  <text x="77" y="34" font-family="Arial" font-size="10" fill="#1E40AF">$</text>
+  
+  <circle cx="100" cy="40" r="10" fill="#FFB800"/>
+  <circle cx="100" cy="40" r="8" fill="#FFD700"/>
+  <text x="97" y="44" font-family="Arial" font-size="10" fill="#1E40AF">$</text>
+  
+  <!-- Year Labels -->
+  <text x="75" y="165" font-family="Arial" font-size="8" fill="#1E40AF">2023</text>
+  <text x="105" y="165" font-family="Arial" font-size="8" fill="#1E40AF">2024</text>
+  <text x="135" y="165" font-family="Arial" font-size="8" fill="#1E40AF">2025</text>
+  <text x="165" y="165" font-family="Arial" font-size="8" fill="#1E40AF">2026</text>
+  <text x="195" y="165" font-family="Arial" font-size="8" fill="#1E40AF">2027</text>
+  <text x="225" y="165" font-family="Arial" font-size="8" fill="#1E40AF">2028</text>
+  
+  <!-- Value Labels -->
+  <text x="35" y="150" font-family="Arial" font-size="8" fill="#1E40AF">0</text>
+  <text x="35" y="130" font-family="Arial" font-size="8" fill="#1E40AF">5B</text>
+  <text x="30" y="110" font-family="Arial" font-size="8" fill="#1E40AF">10B</text>
+  <text x="30" y="90" font-family="Arial" font-size="8" fill="#1E40AF">15B</text>
+  <text x="30" y="70" font-family="Arial" font-size="8" fill="#1E40AF">20B</text>
+  <text x="30" y="50" font-family="Arial" font-size="8" fill="#1E40AF">25B</text>
+  
+  <!-- Title -->
+  <text x="120" y="25" font-family="Arial" font-weight="bold" font-size="12" fill="#1E40AF">Investment Growth</text>
+</svg>

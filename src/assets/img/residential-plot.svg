@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f0f4f8" />
+  
+  <!-- Land plot with house -->
+  <g transform="translate(100, 100)">
+    <!-- Land plot -->
+    <rect x="0" y="200" width="600" height="200" fill="#a5d6a7" stroke="#2e7d32" stroke-width="4" />
+    
+    <!-- House -->
+    <g transform="translate(200, 100)">
+      <!-- House base -->
+      <rect x="0" y="0" width="200" height="150" fill="#e0e0e0" stroke="#616161" stroke-width="3" />
+      
+      <!-- Roof -->
+      <polygon points="0,0 100,-80 200,0" fill="#ef5350" stroke="#c62828" stroke-width="3" />
+      
+      <!-- Door -->
+      <rect x="80" y="70" width="40" height="80" fill="#795548" stroke="#4e342e" stroke-width="2" />
+      <circle cx="110" cy="110" r="3" fill="#ffd700" />
+      
+      <!-- Windows -->
+      <rect x="30" y="40" width="40" height="40" fill="#bbdefb" stroke="#1976d2" stroke-width="2" />
+      <line x1="30" y1="60" x2="70" y2="60" stroke="#1976d2" stroke-width="2" />
+      <line x1="50" y1="40" x2="50" y2="80" stroke="#1976d2" stroke-width="2" />
+      
+      <rect x="130" y="40" width="40" height="40" fill="#bbdefb" stroke="#1976d2" stroke-width="2" />
+      <line x1="130" y1="60" x2="170" y2="60" stroke="#1976d2" stroke-width="2" />
+      <line x1="150" y1="40" x2="150" y2="80" stroke="#1976d2" stroke-width="2" />
+    </g>
+    
+    <!-- Trees -->
+    <g transform="translate(50, 150)">
+      <rect x="0" y="30" width="10" height="20" fill="#795548" />
+      <circle cx="5" cy="15" r="15" fill="#66bb6a" />
+    </g>
+    
+    <g transform="translate(500, 150)">
+      <rect x="0" y="30" width="10" height="20" fill="#795548" />
+      <circle cx="5" cy="15" r="15" fill="#66bb6a" />
+    </g>
+    
+    <!-- Road -->
+    <rect x="250" y="300" width="100" height="100" fill="#9e9e9e" />
+    <rect x="290" y="310" width="20" height="80" fill="#fafafa" stroke="none" stroke-dasharray="5,5" />
+  </g>
+  
+  <!-- Text -->
+  <text x="400" y="50" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#333333">Residential Plot</text>
+  <text x="400" y="80" font-family="Arial" font-size="16" text-anchor="middle" fill="#555555">Premium Location in Dholera SIR</text>
+</svg>
