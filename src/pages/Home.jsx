@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Carousel from "../components/Carousel";
 import ParallaxSection from "../components/ParallaxSection";
@@ -36,25 +36,113 @@ import shivji from "../assets/img/team/management/shivji.webp";
 import mohanji from "../assets/img/team/management/mohanji.webp";
 import nitinji from "../assets/img/team/management/nitinji.webp";
 
+// Import project logos
+import skyRiseLogo from "../assets/img/Sky rise Logo.jpg.jpeg";
+import orchidRiverViewLogo from "../assets/img/ORCHID RIVER VIEW Logo.jpg.jpeg";
+import orchidVillaGoldLogo from "../assets/img/ORCHID VILLA GOLD Logo.jpg.jpeg";
+import nestoriaHomesLogo from "../assets/img/Nestoria Homes Logo.jpg.jpeg";
+
 function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [hasModalShown, setHasModalShown] = useState(false);
+
+  // Check if modal has already been shown on page load
+  useEffect(() => {
+    const modalShown = localStorage.getItem('leadFormModalShown');
+    if (modalShown === 'true') {
+      setHasModalShown(true);
+    }
+  }, []);
+
+  // Detect scroll and show modal when user reaches halfway
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = scrollTop / docHeight;
+      
+      // Show modal when user scrolls past 50% and hasn't been shown before
+      if (scrollPercent >= 0.5 && !isModalOpen && !hasModalShown) {
+        setIsModalOpen(true);
+        setHasModalShown(true);
+        // Store in localStorage that modal has been shown
+        localStorage.setItem('leadFormModalShown', 'true');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isModalOpen, hasModalShown]);
+
+  // Function to close modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="overflow-hidden bg-primary-900">
+      {/* Lead Form Modal Dialog */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4 animate-fadeIn">
+          <div className="relative max-w-2xl w-full max-h-[95vh] overflow-auto bg-white rounded-2xl shadow-2xl">
+            {/* Close Button */}
+            <button 
+              onClick={closeModal}
+              className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors duration-300 z-10"
+              aria-label="Close modal"
+            >
+              <i className="fas fa-times text-gray-600 text-xl"></i>
+            </button>
+            
+            {/* Modal Header */}
+            <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 rounded-t-2xl">
+              <h3 className="text-2xl font-bold mb-2">Get In Touch</h3>
+              <p className="text-blue-100">Fill out the form below and we'll get back to you shortly</p>
+            </div>
+            
+            {/* Iframe Container */}
+            <div className="p-6">
+              <div className="relative pb-[70%] h-0 md:pb-[75%] lg:pb-[80%]">
+                <iframe
+                  src="https://form.nestoriagroup.com"
+                  className="absolute top-0 left-0 w-full h-full rounded-lg border-0"
+                  title="Lead Form"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+            
+            {/* Modal Footer */}
+            <div className="bg-gray-50 px-6 py-4 rounded-b-2xl border-t border-gray-200">
+              <p className="text-sm text-gray-600 text-center">
+                <i className="fas fa-lock mr-2"></i>
+                Your information is secure and will not be shared.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
 
       {/* Hero Section with Video Background */}
       
-      <section className="relative h-screen w-full overflow-hidden">
+      <section className="relative w-full h-screen overflow-hidden">
         {/* Video Background */}
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 min-w-full min-h-full object-cover"
+          style={{ objectPosition: 'center' }}
         >
           <source src="https://nestoriagroup.com/hero.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+        
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/30"></div>
       </section>
 
       {/* Hero Content Section */}
@@ -105,7 +193,7 @@ function Home() {
                   alt="Nestoria Group - Premier Real Estate Developer in Dholera SIR Gujarat"
 
                 />
-                <div className="absolute inset-0 bg-blue-900/60 flex items-end justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-0 bg-blue-600/60 flex items-end justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <span className="text-white text-lg sm:text-xl md:text-2xl font-bold px-4 sm:px-6 py-3 border-2 border-white rounded-lg mb-6 sm:mb-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     Discover Nestoria
                   </span>
@@ -189,20 +277,20 @@ function Home() {
       {/* Services Section */}
       <section
         id="services"
-        className="bg-blue-900 text-white relative overflow-hidden"
+        className="bg-blue-600 text-white relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-black/20"></div>
         
           <div className="container mx-auto px-4 py-16 md:py-24 lg:py-32 ">
             <div className="text-center max-w-4xl mx-auto mb-12 md:mb-20">
-              <h6 className="text-blue-300 font-semibold text-lg md:text-xl mb-4 uppercase tracking-wider">
+              <h6 className="text-blue-900 font-semibold text-lg md:text-xl mb-4 uppercase tracking-wider">
                 What We Offer
               </h6>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                Our <span className="text-blue-300">Services</span>
+                Our <span className="text-blue-200">Services</span>
               </h2>
               <div className="h-1 w-32 bg-blue-500 mx-auto mb-8"></div>
-              <p className="text-gray-200 text-lg md:text-xl leading-relaxed">
+              <p className="text-whiteg md:text-xl leading-relaxed">
                 We offer comprehensive real estate services tailored to meet
                 your investment needs in Dholera SIR with world-class infrastructure and unlimited growth potential.
               </p>
@@ -342,48 +430,43 @@ function Home() {
           <div className="relative w-full overflow-hidden">
             <div className="flex animate-marquee">
               {/* First set of logos */}
-              <div className="flex items-center gap-8 md:gap-12 px-4" style={{ minWidth: 'max-content' }}>
+              <div className="flex items-center gap-8 md:gap-16 px-4" style={{ minWidth: 'max-content' }}>
                 {[
-                  { name: "Palm Green ", icon: "fa-building" },
-                  { name: "Sky Rise residency", icon: "fa-leaf" },
-                  { name: "Sky Rise River View", icon: "fa-store" },
-                  { name: "Nestoria Atulyam", icon: "fa-home" },
-                 
-                ].map((project, index) => (
+                  skyRiseLogo,
+                  orchidRiverViewLogo,
+                  orchidVillaGoldLogo,
+                  nestoriaHomesLogo
+                ].map((logoSrc, index) => (
                   <div 
                     key={index}
-                    className="flex-shrink-0 bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 md:p-8 border-2 border-blue-100 hover:border-blue-300 group cursor-pointer w-[200px] md:w-[240px]"
+                    className="flex-shrink-0 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 md:p-8 border-2 border-gray-100 hover:border-blue-300 group cursor-pointer"
                   >
-                    <div className="bg-blue-600 rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <i className={`fas ${project.icon} text-2xl md:text-3xl text-white`}></i>
-                    </div>
-                    <h4 className="text-base md:text-lg font-bold text-gray-800 text-center group-hover:text-blue-600 transition-colors duration-300 break-words">
-                      {project.name}
-                    </h4>
+                    <img 
+                      src={logoSrc} 
+                      alt={`Project Logo ${index + 1}`}
+                      className="w-[150px] md:w-[200px] h-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                    />
                   </div>
                 ))}
               </div>
               
               {/* Duplicate set for seamless loop */}
-              <div className="flex items-center gap-8 md:gap-12 px-4" style={{ minWidth: 'max-content' }}>
+              <div className="flex items-center gap-8 md:gap-16 px-4" style={{ minWidth: 'max-content' }}>
                 {[
-                  { name: "Nestoria Heights", icon: "fa-building" },
-                  { name: "Nestoria Greens", icon: "fa-leaf" },
-                  { name: "Nestoria Plaza", icon: "fa-store" },
-                  { name: "Nestoria Residency", icon: "fa-home" },
-                  { name: "Nestoria Towers", icon: "fa-city" },
-                  { name: "Nestoria Valley", icon: "fa-mountain" }
-                ].map((project, index) => (
+                  skyRiseLogo,
+                  orchidRiverViewLogo,
+                  orchidVillaGoldLogo,
+                  nestoriaHomesLogo
+                ].map((logoSrc, index) => (
                   <div 
                     key={`dup-${index}`}
-                    className="flex-shrink-0 bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 md:p-8 border-2 border-blue-100 hover:border-blue-300 group cursor-pointer w-[200px] md:w-[240px]"
+                    className="flex-shrink-0 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 md:p-8 border-2 border-gray-100 hover:border-blue-300 group cursor-pointer"
                   >
-                    <div className="bg-blue-600 rounded-full w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <i className={`fas ${project.icon} text-2xl md:text-3xl text-white`}></i>
-                    </div>
-                    <h4 className="text-base md:text-lg font-bold text-gray-800 text-center group-hover:text-blue-600 transition-colors duration-300 break-words">
-                      {project.name}
-                    </h4>
+                    <img 
+                      src={logoSrc} 
+                      alt={`Project Logo ${index + 1}`}
+                      className="w-[150px] md:w-[200px] h-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                    />
                   </div>
                 ))}
               </div>
@@ -393,7 +476,7 @@ function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 sm:py-16 md:py-24 bg-gray-900 text-white relative overflow-hidden">
+      <section className="py-12 sm:py-16 md:py-24 bg-blue-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-black/30"></div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-10 sm:mb-12">
@@ -420,6 +503,105 @@ function Home() {
                 <p className="text-gray-300 font-medium text-xs sm:text-sm">{stat.label}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Spotlight Newsletter Section */}
+      <section className="py-16 md:py-24 bg-gradient-to-br from-blue-600 to-blue-800">
+        <div className="container mx-auto px-4">
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+              SPOTLIGHT - Newsletter
+            </h2>
+            <div className="h-1 w-24 sm:w-32 bg-white mx-auto"></div>
+          </div>
+
+          {/* Newsletter Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Newsletter Vol 3 */}
+            <div 
+              className="group cursor-pointer"
+              onClick={() => window.open('https://nestoriagroup.com/DholeraSIR.pdf', '_blank')}
+            >
+              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 transform hover:-translate-y-2 h-full flex flex-col">
+                <div className="relative overflow-hidden">
+                  <img 
+                    src="https://nestoriagroup.com/DholeraSIR.jpg" 
+                    alt="Spotlight Newsletter Vol 3" 
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-6 flex-grow flex flex-col justify-between">
+                  <div>
+                    
+                    <p className="text-gray-600 text-sm mb-4">
+                      Dholera SIR - India's First Smart City
+                    </p>
+                  </div>
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.open('https://nestoriagroup.com/DholeraSIR.pdf', '_blank');
+                    }}
+                    className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg w-full"
+                  >
+                    <i className="fas fa-file-pdf mr-2"></i>
+                    Download PDF
+                    <i className="fas fa-arrow-right ml-2"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Newsletter Vol 2 */}
+            <div 
+              className="group cursor-pointer"
+              onClick={() => window.open('https://nestoriagroup.com/NestoriaGroupProfile.pdf', '_blank')}
+            >
+              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 transform hover:-translate-y-2 h-full flex flex-col">
+                <div className="relative overflow-hidden">
+                  <img 
+                    src="https://nestoriagroup.com/NestoriaGroupProfile.jpg" 
+                    alt="Spotlight Newsletter Vol 2" 
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-6 flex-grow flex flex-col justify-between">
+                  <div>
+                    
+                    <p className="text-gray-600 text-sm mb-4">
+                      Nestoria Group Profile & Achievements
+                    </p>
+                  </div>
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.open('https://nestoriagroup.com/NestoriaGroupProfile.pdf', '_blank');
+                    }}
+                    className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg w-full"
+                  >
+                    <i className="fas fa-file-pdf mr-2"></i>
+                    Download PDF
+                    <i className="fas fa-arrow-right ml-2"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* View All Link */}
+          <div className="text-center mt-12">
+            <a 
+              href="#" 
+              className="inline-flex items-center text-white hover:text-blue-100 font-bold text-lg transition-colors duration-300 group"
+            >
+              View All Newsletters
+              <i className="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform duration-300"></i>
+            </a>
           </div>
         </div>
       </section>

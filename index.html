@@ -89,23 +89,26 @@
 
   <!-- Meta Pixel Tag -->
   <script>
-    !function (f, b, e, v, n, t, s) {
-      if (f.fbq) return; n = f.fbq = function () {
-        n.callMethod ?
-        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-      };
-      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
-      n.queue = []; t = b.createElement(e); t.async = !0;
-      t.src = v; s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s)
-    }(window, document, 'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '2445301802581558');
-    fbq('track', 'PageView');
+    // Check for GDPR cookie consent before loading Facebook Pixel
+    const gdprConsent = localStorage.getItem('gdprCookieConsent');
+    
+    if (gdprConsent === 'accepted') {
+      !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return; n = f.fbq = function () {
+          n.callMethod ?
+          n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+        };
+        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+        n.queue = []; t = b.createElement(e); t.async = !0;
+        t.src = v; s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s)
+      }(window, document, 'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '2445301802581558');
+      fbq('track', 'PageView');
+    }
   </script>
-  <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=2445301802581558&ev=PageView&noscript=1" /></noscript>
-      <!--End  Meta Pixel Tag -->
+  <!--End  Meta Pixel Tag -->
 
   <!-- Preload critical resources -->
   <link rel="preload" href="./src/assets/img/Home-banner.svg" as="image">
@@ -125,6 +128,12 @@
 </head>
 
 <body>
+  <!-- Facebook Pixel Noscript (for users with JavaScript disabled) -->
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=2445301802581558&ev=PageView&noscript=1" />
+  </noscript>
+  
   <div id="root" class="min-h-screen flex flex-col"></div>
   <script type="module" src="./src/main.jsx"></script>
 </body>

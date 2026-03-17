@@ -177,10 +177,10 @@ function Footer() {
               </li>
               <li>
                 <Link
-                  to="#"
+                  to="/latest-news"
                   className="text-gray-400 hover:text-primary-400 transition duration-300 flex items-center"
                 >
-                  <i className="fas fa-chevron-right mr-2 text-primary-200 text-xs"></i>
+                  <i className="fas fa-chevron-right mr-2 text-blue-200 text-xs"></i>
                   Latest News
                 </Link>
               </li>

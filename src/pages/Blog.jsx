@@ -26,21 +26,21 @@ const Blog = () => {
       title: "Nestoria Group Welcomes a New Dawn of Intelligent Building with 3D Homes in Dholera",
       excerpt: "The Indian real estate market is entering an ambitious new era with Nestoria group being on the forefront of developing 3D-printed houses on a large scale at Dholera",
       date: "March 14, 2026",
-      author: " India CSR",
+      author: "India CSR",
       category: "investment",
       image: "https://indiacsr.in/wp-content/uploads/2026/02/India-Builds.jpg",
       link: "https://indiacsr.in/nestoria-group-welcomes-a-new-dawn-of-intelligent-building-with-3d-homes-in-dholera/"
-    }
-    // {
-    //   id: 2,
-    //   title: "The Indian real estate market is entering an ambitious new era with Nestoria group ",
-    //   excerpt: "Discover why investors are flocking to Dholera SIR and how early investment in this emerging smart city can yield significant returns.",
-    //   date: "May 28, 2023",
-    //   author: "Priya Patel",
-    //   category: "investment",
-    //   image: "https://press-release-v1-new.s3.ap-south-1.amazonaws.com/order/53343/1771915261702_1.png",
-    //   link: "https://www.businessupturn.com/brand-post/nestoria-group-welcomes-a-new-dawn-of-intelligent-building-with-3d-homes-in-dholera/"
-    // },
+    },
+     {
+       id: 2,
+       title: "Nestoria Group Brings 3D Printed Construction to Dholera Smart City",
+       excerpt: "Nestoria Group has initiated 3D printed construction technology in Dholera, positioning the project as a significant development within India’s emerging smart city landscape. ",
+       date: "March 2, 2026",
+       author: "Devdarsh Nambiar",
+       category: "market-trends",
+       image: "https://www.aurumproptech.in/_next/image?url=https%3A%2F%2Fd1smx9vz40s2y3.cloudfront.net%2Fmedia%2Fbanner_image%2F1772448735861-nestoria-group-brings-3d-printed-construction-to-dholera-smart-city.jpeg&w=828&q=75",
+       link: "https://www.aurumproptech.in/pulse/media/nestoria-group-brings-3d-printed-construction-to-dholera-smart-city"
+     }
     // {
     //   id: 3,
     //   title: "The Delhi-Mumbai Industrial Corridor: A Game Changer for Gujarat",

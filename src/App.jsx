@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Footer from './components/footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import CookieConsentBanner from './components/CookieConsentBanner';
 
 // Lazy load page components for code splitting
 const Home = lazy(() => import('./pages/Home'));
@@ -16,6 +17,7 @@ const Blog = lazy(() => import('./pages/Blog'));
 const FAQ = lazy(() => import('./pages/Faq'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Media = lazy(() => import('./pages/Media'));
+const LatestNews = lazy(() => import('./pages/LatestNews'));
 const Achievements = lazy(() => import('./pages/Achievements'));
 const LandDeals = lazy(() => import('./pages/LandDeal'));
 const Projects = lazy(() => import('./pages/Projects'));
@@ -126,6 +128,7 @@ function App() {
               <Route path="/faq" element={<Suspense fallback={<div className="flex justify-center items-center h-64" role="status" aria-label="Loading FAQ page"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div></div>}><><Seo title="FAQ - Nestoria Group" description="Frequently asked questions about investing in Dholera SIR." keywords="FAQ, real estate investment, Dholera SIR" /><FAQ /></></Suspense>} />
               <Route path="/land-deals" element={<Suspense fallback={<div className="flex justify-center items-center h-64" role="status" aria-label="Loading land deals page"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div></div>}><><Seo title="Exclusive Land Deals In Dholera SIR | Residential & Commercial Plots" description="Explore premium land investment opportunities in Dholera SIR." keywords="land deals, real estate, Dholera SIR, investment" /><LandDeals /></></Suspense>} />
               <Route path="/media" element={<Suspense fallback={<div className="flex justify-center items-center h-64" role="status" aria-label="Loading media page"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div></div>}><><Seo title="Media - Nestoria Group" description="See our latest media coverage and press releases." keywords="media, Nestoria Group, press releases" /><Media /></></Suspense>} />
+              <Route path="/latest-news" element={<Suspense fallback={<div className="flex justify-center items-center h-64" role="status" aria-label="Loading latest news page"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div></div>}><><Seo title="Latest News - Nestoria Group | Dholera SIR Updates" description="Stay updated with the latest news and developments about Dholera SIR and Nestoria Group." keywords="latest news, Dholera SIR updates, real estate news" /><LatestNews /></></Suspense>} />
               <Route path="/projects" element={<Suspense fallback={<div className="flex justify-center items-center h-64" role="status" aria-label="Loading projects page"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div></div>}><><Seo title="Projects - Nestoria Group" description="View our featured real estate projects in Dholera SIR." keywords="projects, real estate, Dholera SIR" /><Projects /></></Suspense>} />
               <Route path="/services" element={<Suspense fallback={<div className="flex justify-center items-center h-64" role="status" aria-label="Loading services page"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div></div>}><><Seo title="Services - Nestoria Group" description="Learn about our real estate services in Dholera SIR." keywords="services, real estate, Dholera SIR" /><Services /></></Suspense>} />
               <Route path="/achievements" element={<Suspense fallback={<div className="flex justify-center items-center h-64" role="status" aria-label="Loading achievements page"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div></div>}><><Seo title="Achievements - Nestoria Group" description="Our achievements and milestones in real estate development." keywords="achievements, Nestoria Group, real estate" /><Achievements /></></Suspense>} />
@@ -139,6 +142,9 @@ function App() {
               
               {/* WhatsApp Floating Button */}
               <WhatsAppButton />
+              
+              {/* GDPR Cookie Consent Banner */}
+              <CookieConsentBanner />
               
               {/* Skip to main content link for accessibility */}
               <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-black focus:p-2 focus:rounded focus:shadow-lg">

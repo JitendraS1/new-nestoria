@@ -69,7 +69,7 @@ function Navbar() {
         {/* Mobile Menu Button */}
         <button
           type="button"
-          className="md:hidden text-gray-800 hover:text-blue-600"
+          className="md:hidden text-gray-800 hover:text-blue-500"
           onClick={toggleMenu}
         >
           <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
@@ -137,7 +137,7 @@ function Navbar() {
                   <li key={label}>
                     <Link
                       to={link}
-                      className="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-600 hover:text-white"
+                      className="block px-4 py-2 text-sm text-gray-800 hover:bg-blue-500 hover:text-white"
                       onClick={() => setIsOpen(false)}
                     >
                       {label}

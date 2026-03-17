@@ -8,11 +8,12 @@ import testomonial6 from '/src/assets/img/testomonials/Mr.-Dayananda-Reddy.webp'
 import testomonial7 from '/src/assets/img/testomonials/Shahnawaz-Choudhary.webp'
 import testomonial8 from '/src/assets/img/testomonials/Jasbir-Singh-Arora.webp'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
 
 
 const Carousel = () => {
@@ -121,20 +122,24 @@ const Carousel = () => {
   };
 
   return (
-    <div className="py-12 relative w-full max-w-7xl mx-auto touch-pan-y">
+    <div className="py-12 relative w-full max-w-[1600px] mx-auto touch-pan-y">
       <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
+        modules={[Autoplay]}
         spaceBetween={30}
         slidesPerView={1}
-        navigation
-        pagination={{ 
-          clickable: true,
-          bulletActiveClass: 'swiper-pagination-bullet-active bg-jurska-accent'
+        autoplay={{ 
+          delay: 0,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+          reverseDirection: false,
+          delayAfterEnd: 0
         }}
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
+        loop={true}
+        speed={5000}
         breakpoints={{
           640: {
-            slidesPerView: 1
+            slidesPerView: 1,
+            spaceBetween: 15
           },
           768: {
             slidesPerView: 2,
@@ -142,6 +147,10 @@ const Carousel = () => {
           },
           1024: {
             slidesPerView: 3,
+            spaceBetween: 25
+          },
+          1280: {
+            slidesPerView: 4,
             spaceBetween: 30
           }
         }}
@@ -149,35 +158,55 @@ const Carousel = () => {
       >
         {testimonials.map((testimonial, index) => (
           <SwiperSlide key={index}>
-            <div className="jurska-card p-6 m-4 transition-all duration-300 hover:border-jurska-accent border border-transparent min-w-[280px] h-full flex flex-col relative overflow-hidden">
-              <div className="flex items-center mb-4 border-b border-gray-100 pb-4">
-                <div className="w-16 h-16 rounded-full overflow-hidden mr-4 shadow-sm border-2 border-jurska-accent">
-                  <img 
-                    src={testimonial.image} 
-                    alt={testimonial.name} 
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" 
-                  />
-                </div>
-                <div>
-                  <h4 className="text-lg font-display font-bold text-jurska-primary">{testimonial.name}</h4>
-                  <p className="text-jurska-gray text-sm">{testimonial.position}</p>
-                </div>
+            <div className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 p-6 md:p-8 h-full border border-gray-100 relative overflow-hidden group hover:border-blue-200 flex flex-col" style={{ height: '450px' }}>
+              {/* Decorative Quote Icon */}
+              <div className="absolute top-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
+                <i className="fas fa-quote-right text-6xl text-blue-600"></i>
               </div>
-              <div className="mb-4">
+              
+              {/* Rating Stars */}
+              <div className="flex mb-4 flex-shrink-0">
                 {renderStars(testimonial.rating)}
               </div>
-              <div className="flex-grow">
-                <p className="text-jurska-gray text-base italic pl-2 border-l-3 border-jurska-accent">"{testimonial.testimonial}"</p>
+              
+              {/* Testimonial Content */}
+              <div className="mb-6 flex-grow overflow-hidden">
+                <p className="text-gray-700 text-base leading-relaxed italic relative pl-4 border-l-4 border-blue-600 line-clamp-6">
+                  "{testimonial.testimonial}"
+                </p>
               </div>
+              
+              {/* User Info Section */}
+              <div className="flex items-center pt-6 border-t border-gray-100 flex-shrink-0 mt-auto">
+                <div className="relative flex-shrink-0">
+                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-full overflow-hidden ring-4 ring-blue-100 group-hover:ring-blue-300 transition-all duration-300 shadow-md">
+                    <img 
+                      src={testimonial.image} 
+                      alt={testimonial.name} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="absolute -bottom-1 -right-1 bg-blue-600 rounded-full p-1.5 shadow-sm">
+                    <i className="fas fa-check text-white text-xs"></i>
+                  </div>
+                </div>
+                <div className="ml-4 flex-grow min-w-0">
+                  <h4 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300 truncate">
+                    {testimonial.name}
+                  </h4>
+                  <p className="text-sm text-gray-600 mt-1 line-clamp-2" title={testimonial.position}>
+                    {testimonial.position}
+                  </p>
+                </div>
+              </div>
+              
+              {/* Bottom Accent Bar */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out"></div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
-      
-      {/* Custom pagination styles with Tailwind */}
-      <div className="mt-6 flex justify-center gap-2 flex-wrap px-4">
-        {/* Pagination is handled by Swiper, this is just for additional styling if needed */}
-      </div>
     </div>
   );
 }

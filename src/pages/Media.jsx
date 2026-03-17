@@ -172,6 +172,16 @@ function Media() {
       category: "Documentary",
       image: 'https://img.youtube.com/vi/884m9TUxxAo/hqdefault.jpg',
       link: "https://www.youtube.com/embed/884m9TUxxAo"
+    },
+    {
+      id: 17,
+      title: "Tell Your Story | Episode 1 | Nitin Singh Tomar, MD, Nestoria Group",
+      excerpt: "Witness the transformation and groundbreaking development of Dholera Special Investment Region.",
+      date: "March 2026",
+      type: "video",
+      category: "Documentary",
+      image: 'https://img.youtube.com/vi/WRjG9ETnCz0/hqdefault.jpg',
+      link: "https://www.youtube.com/embed/WRjG9ETnCz0"
     }
   ];
 
