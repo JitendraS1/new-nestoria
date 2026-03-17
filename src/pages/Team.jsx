@@ -28,7 +28,7 @@ function Team() {
       id: 1,
       name: "Shivkumar Singh Tomar",
       position: "Chairman",
-      bio: "Shivkumar Singh Tomar is the Chairman of Nestoria Group. He has over 25 years of experience in the real estate industry. He has been responsible for leading the company to its current position. He has also been responsible for setting the direction and strategy for the company. He has been a key player in the development of Nestoria Group. He has also been a key player in the development of Nestoria Group. He has also been a key player in the development of Nestoria Group.",
+      bio: "Shivkumar Singh Tomar is the Chairman of Nestoria Group. He has over 15 years of experience in the real estate industry. He has been responsible for leading the company to its current position. He has also been responsible for setting the direction and strategy for the company. He has been a key player in the development of Nestoria Group. He has also been a key player in the development of Nestoria Group. He has also been a key player in the development of Nestoria Group.",
       image: shivjiImg,
       socialLinks: {
         linkedin: "#",
@@ -53,7 +53,7 @@ function Team() {
       id: 3,
       name: "Nitin Singh Tomar",
       position: "Managing Director",
-      bio: "With over 20 years of experience in real estate development, Nitin Singh Tomar has led Nestoria Group to become one of the leading developers in Dholera SIR. His vision and strategic leadership have been instrumental in the company's growth.",
+      bio: "With over 15 years of experience in real estate development, Nitin Singh Tomar has led Nestoria Group to become one of the leading developers in Dholera SIR. His vision and strategic leadership have been instrumental in the company's growth.",
       image: nitinjiImg,
 
       socialLinks: {
@@ -256,7 +256,7 @@ function Team() {
                       alt={leader.name}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-3 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                    {/* <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-3 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
                       <a
                         href={leader.socialLinks.linkedin}
                         className="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-110 shadow-lg"
@@ -275,7 +275,7 @@ function Team() {
                       >
                         <i className="fas fa-envelope text-lg"></i>
                       </a>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="p-6 md:p-8 text-center">
                     <h5 className="text-xl md:text-2xl font-bold mb-2 text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
@@ -525,23 +525,34 @@ function Team() {
       {/* Image Dialog */}
       {isDialogOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4 cursor-pointer"
           onClick={closeDialog}
           role="dialog"
           aria-modal="true"
           aria-label="Image dialog"
         >
-          <div className="relative max-w-6xl max-h-full" onClick={(e) => e.stopPropagation()}>
+          <div 
+            className="relative max-w-6xl max-h-full" 
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
-              className="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-all duration-300 z-10"
+              className="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-all duration-300 z-10 hover:scale-110"
               onClick={closeDialog}
               aria-label="Close dialog"
+              type="button"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
               </svg>
             </button>
-            <img src={dialogImage} alt={dialogAlt} className="max-h-screen max-w-full object-contain" id="dialog-image" />
+            <img 
+              src={dialogImage} 
+              alt={dialogAlt} 
+              className="max-h-screen max-w-full object-contain rounded-lg shadow-2xl" 
+              id="dialog-image"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <p className="text-white text-center mt-4 text-lg font-semibold">{dialogAlt}</p>
           </div>
         </div>
       )}
@@ -590,7 +601,7 @@ function Team() {
       </section>
 
       {/* Current Openings Section */}
-      <section
+      {/* <section
         id="current-openings"
         className="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-white"
       >
@@ -715,7 +726,7 @@ function Team() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

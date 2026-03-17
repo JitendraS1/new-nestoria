@@ -7,6 +7,9 @@ const LatestNews = () => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
+  // Use a ref to track all fetched URLs (persists across renders)
+  const fetchedUrlsRef = React.useRef(new Set());
 
   useEffect(() => {
     fetchLatestNews();
@@ -24,7 +27,50 @@ const LatestNews = () => {
       }
       
       const data = await response.json();
-      setNews(data.articles || []);
+      const articles = data.articles || [];
+      
+      // Filter out duplicate articles based on URL or title
+      const uniqueArticles = articles.filter(article => {
+        if (!article.url && !article.title) return false; // Skip articles without URL and title
+        
+        // Check if we've already seen this URL or title
+        const urlKey = article.url ? `url:${article.url}` : '';
+        const titleKey = article.title ? `title:${article.title.toLowerCase().trim()}` : '';
+        const identifier = urlKey || titleKey;
+        
+        if (fetchedUrlsRef.current.has(identifier)) {
+          return false;
+        }
+        
+        // Add to fetched URLs
+        fetchedUrlsRef.current.add(identifier);
+        return true;
+      });
+      
+      // If no new articles, don't update state
+      if (uniqueArticles.length === 0 && news.length > 0) {
+        setLoading(false);
+        return;
+      }
+      
+      // Combine with existing news and remove any duplicates within the new batch
+      const combinedNews = [...news, ...uniqueArticles];
+      const seenIdentifiers = new Set();
+      const deduplicatedNews = combinedNews.filter(article => {
+        if (!article.url && !article.title) return false;
+        
+        const urlKey = article.url ? `url:${article.url}` : '';
+        const titleKey = article.title ? `title:${article.title.toLowerCase().trim()}` : '';
+        const identifier = urlKey || titleKey;
+        
+        if (seenIdentifiers.has(identifier)) {
+          return false;
+        }
+        seenIdentifiers.add(identifier);
+        return true;
+      });
+      
+      setNews(deduplicatedNews);
       setError(null);
     } catch (err) {
       setError(err.message || 'An error occurred while fetching news');
