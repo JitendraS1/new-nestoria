@@ -341,6 +341,113 @@ function Aboutdholera() {
         </div>
       </section>
       
+      {/* What Sets Us Apart Section */}
+      <section className="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-white relative">
+        <div className="container mx-auto px-4">
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-900 mb-4">
+              What Sets Us Apart...
+            </h2>
+            <div className="h-1 w-32 bg-blue-600 mx-auto"></div>
+          </div>
+
+          {/* Features Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+            {[
+              {
+                icon: "https://dholera.gujarat.gov.in/dicdl_web_portal/static/src/img/smart_icons/dicdl_worldclass_infrastructure.png",
+                title: "Worldclass Infrastructure",
+                link: "https://dholera.gujarat.gov.in/advantage_dholera#Worldclass_Infrastructure"
+              },
+              {
+                icon: "https://dholera.gujarat.gov.in/dicdl_web_portal/static/src/img/smart_icons/dicdl_ease_of_governance.png",
+                title: "Ease of Governance",
+                link: "https://dholera.gujarat.gov.in/advantage_dholera#Ease_of_Governance"
+              },
+              {
+                icon: "https://dholera.gujarat.gov.in/dicdl_web_portal/static/src/img/smart_icons/dicdl_plug_play.png",
+                title: "Plug & Play",
+                link: "https://dholera.gujarat.gov.in/advantage_dholera#Plug_Play"
+              },
+              {
+                icon: "https://dholera.gujarat.gov.in/dicdl_web_portal/static/src/img/smart_icons/dicdl_social_infrastructure.png",
+                title: "Social Infrastructure",
+                link: "https://dholera.gujarat.gov.in/advantage_dholera#Social_Infrastructure"
+              },
+              {
+                icon: "https://dholera.gujarat.gov.in/dicdl_web_portal/static/src/img/smart_icons/dicdl_ease_of_business.png",
+                title: "Ease of Business",
+                link: "https://dholera.gujarat.gov.in/advantage_dholera#Ease_of_Business"
+              },
+              {
+                icon: "https://dholera.gujarat.gov.in/dicdl_web_portal/static/src/img/smart_icons/dicdl_external_connectivity.png",
+                title: "External Connectivity",
+                link: "https://dholera.gujarat.gov.in/advantage_dholera#External_Connectivity"
+              },
+              {
+                icon: "https://dholera.gujarat.gov.in/dicdl_web_portal/static/src/img/smart_icons/dicdl_live_workand_play.png",
+                title: "Live, Work and Play",
+                link: "https://dholera.gujarat.gov.in/advantage_dholera#Live_Work_Play"
+              },
+              {
+                icon: "https://dholera.gujarat.gov.in/dicdl_web_portal/static/src/img/smart_icons/dicdl_technology.png",
+                title: "Technology",
+                link: "https://dholera.gujarat.gov.in/advantage_dholera#Technology"
+              },
+              {
+                icon: "https://dholera.gujarat.gov.in/dicdl_web_portal/static/src/img/smart_icons/dicdl_sustainability.png",
+                title: "Sustainability",
+                link: "https://dholera.gujarat.gov.in/advantage_dholera#Sustainability"
+              },
+              {
+                icon: "https://dholera.gujarat.gov.in/dicdl_web_portal/static/src/img/smart_icons/dicdl_fast_track_approvals.png",
+                title: "Fast Track Approvals",
+                link: "https://dholera.gujarat.gov.in/advantage_dholera#Fast_Track_Approvals"
+              },
+              {
+                icon: "https://dholera.gujarat.gov.in/dicdl_web_portal/static/src/img/smart_icons/dicdl_security.png",
+                title: "Security",
+                link: "https://dholera.gujarat.gov.in/advantage_dholera#Security"
+              },
+              {
+                icon: "https://dholera.gujarat.gov.in/dicdl_web_portal/static/src/img/smart_icons/dicdl_internal_connectivity.png",
+                title: "Internal Connectivity",
+                link: "https://dholera.gujarat.gov.in/advantage_dholera#Internal_Connectivity"
+              }
+            ].map((feature, index) => (
+              <div 
+                key={index}
+                className="group cursor-pointer"
+              >
+                <a href={feature.link} target="_blank" rel="noopener noreferrer" className="block h-full">
+                  <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 transform hover:-translate-y-2 h-full flex flex-col items-center p-6 text-center">
+                    <div className="w-20 h-20 md:w-24 md:h-24 mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <img 
+                        src={feature.icon} 
+                        alt={feature.title}
+                        className="w-full h-full object-contain"
+                        loading="lazy"
+                      />
+                    </div>
+                    <h3 className="text-sm md:text-base font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-300 leading-tight text-center">
+                      {feature.title}
+                    </h3>
+                  </div>
+                </a>
+              </div>
+            ))}
+          </div>
+          
+          {/* Source Credit */}
+          <div className="mt-8 text-right">
+            <p className="text-sm text-gray-500 italic">
+              Source: <a href="https://dholera.gujarat.gov.in/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-300">DICDL</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
 
       {/* Dholera SIR Tabs Section */}
       <section id='tab-section' className="py-16 md:py-24 bg-gradient-to-br from-white to-gray-50">
