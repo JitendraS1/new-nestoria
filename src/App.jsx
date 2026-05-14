@@ -6,7 +6,6 @@ import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Footer from './components/footer';
 import WhatsAppButton from './components/WhatsAppButton';
-import CookieConsentBanner from './components/CookieConsentBanner';
 
 // Lazy load page components for code splitting
 const Home = lazy(() => import('./pages/Home'));
@@ -142,9 +141,6 @@ function App() {
               
               {/* WhatsApp Floating Button */}
               <WhatsAppButton />
-              
-              {/* GDPR Cookie Consent Banner */}
-              <CookieConsentBanner />
               
               {/* Skip to main content link for accessibility */}
               <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:text-black focus:p-2 focus:rounded focus:shadow-lg">

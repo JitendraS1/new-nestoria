@@ -150,7 +150,9 @@ function Navbar() {
             <Link to="/aboutDholera" className="nav-link">Dholera SIR</Link>
             <Link to="/projects" className="nav-link">Projects</Link>
             <Link to="/land-deals" className="nav-link">Land Deals</Link>
-            <Link to="/blog" className="nav-link">Blog</Link>
+            <Link to="https://nestoriagroup.com/blog" className="nav-link" target="_blank" rel="noopener noreferrer">
+              Blog
+            </Link>
             <Link to="/faq" className="nav-link">FAQ</Link>
 
             {/* Mobile Contact */}

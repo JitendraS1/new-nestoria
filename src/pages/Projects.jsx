@@ -57,15 +57,15 @@ function Projects() {
       image: dholeraBhoomi3,
       description: 'Latest phase of the Dholera Bhoomi project featuring modern infrastructure and sustainable living.'
     },
-    {
-      id: 4,
-      type: 'residential',
-      title: 'Orchid Luxury',
-      location: 'Dholera SIR',
-      area: '2000-5000 sq.ft.',
-      image: orchidLuxury,
-      description: 'Luxury villa project with premium amenities and contemporary architecture.'
-    },
+    // {
+    //   id: 4,
+    //   type: 'residential',
+    //   title: 'Orchid Luxury',
+    //   location: 'Dholera SIR',
+    //   area: '2000-5000 sq.ft.',
+    //   image: orchidLuxury,
+    //   description: 'Luxury villa project with premium amenities and contemporary architecture.'
+    // },
     {
       id: 5,
       type: 'residential',
@@ -101,34 +101,34 @@ function Projects() {
       area: '2000-5000 sq.ft.',
       image: orchidVillaParadise,
       description: 'Paradisiacal living experience with modern amenities and beautiful landscaping.'
-    },
-    {
-      id: 9,
-      type: 'residential',
-      title: 'Orchid Villa Gold',
-      location: 'Dholera SIR',
-      area: '1800-4500 sq.ft.',
-      image: orchidVillaGold,
-      description: 'Premium villa project with golden-standard amenities and elegant design.'
-    },
-    {
-      id: 10,
-      type: 'residential',
-      title: 'Orchid Nature Regency',
-      location: 'Dholera SIR',
-      area: '1500-4000 sq.ft.',
-      image: orchidNatureRegency,
-      description: 'Harmonious blend of nature and luxury living in a serene environment.'
-    },
-    {
-      id: 11,
-      type: 'residential',
-      title: 'Palm Villas',
-      location: 'Dholera SIR',
-      area: '2000-5000 sq.ft.',
-      image: palmVillas,
-      description: 'Tropical-inspired villa project with palm tree landscaping and resort-style amenities.'
     }
+    // {
+    //   id: 9,
+    //   type: 'residential',
+    //   title: 'Orchid Villa Gold',
+    //   location: 'Dholera SIR',
+    //   area: '1800-4500 sq.ft.',
+    //   image: orchidVillaGold,
+    //   description: 'Premium villa project with golden-standard amenities and elegant design.'
+    // },
+    // {
+    //   id: 10,
+    //   type: 'residential',
+    //   title: 'Orchid Nature Regency',
+    //   location: 'Dholera SIR',
+    //   area: '1500-4000 sq.ft.',
+    //   image: orchidNatureRegency,
+    //   description: 'Harmonious blend of nature and luxury living in a serene environment.'
+    // },
+    // {
+    //   id: 11,
+    //   type: 'residential',
+    //   title: 'Palm Villas',
+    //   location: 'Dholera SIR',
+    //   area: '2000-5000 sq.ft.',
+    //   image: palmVillas,
+    //   description: 'Tropical-inspired villa project with palm tree landscaping and resort-style amenities.'
+    // }
   ];
 
   // Filter projects based on active filter

@@ -43,90 +43,58 @@ import orchidVillaGoldLogo from "../assets/img/ORCHID VILLA GOLD Logo.jpg.jpeg";
 import nestoriaHomesLogo from "../assets/img/Nestoria Homes Logo.jpg.jpeg";
 
 function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [hasModalShown, setHasModalShown] = useState(false);
+  const [isDisclaimerOpen, setIsDisclaimerOpen] = useState(false);
+  const [hasDisclaimerShown, setHasDisclaimerShown] = useState(false);
 
-  // Check if modal has already been shown on page load
+  // Check if the disclaimer has already been shown on page load
   useEffect(() => {
-    const modalShown = localStorage.getItem('leadFormModalShown');
-    if (modalShown === 'true') {
-      setHasModalShown(true);
+    const disclaimerShown = localStorage.getItem('homeDisclaimerShown');
+    if (disclaimerShown === 'true') {
+      setHasDisclaimerShown(true);
+    } else {
+      setIsDisclaimerOpen(true);
     }
   }, []);
 
-  // Detect scroll and show modal when user reaches halfway
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = scrollTop / docHeight;
-      
-      // Show modal when user scrolls past 50% and hasn't been shown before
-      if (scrollPercent >= 0.5 && !isModalOpen && !hasModalShown) {
-        setIsModalOpen(true);
-        setHasModalShown(true);
-        // Store in localStorage that modal has been shown
-        localStorage.setItem('leadFormModalShown', 'true');
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isModalOpen, hasModalShown]);
-
-  // Function to close modal
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const closeDisclaimer = () => {
+    setIsDisclaimerOpen(false);
+    setHasDisclaimerShown(true);
+    localStorage.setItem('homeDisclaimerShown', 'true');
   };
 
   return (
     <div className="overflow-hidden bg-primary-900">
-      {/* Lead Form Modal Dialog */}
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4 animate-fadeIn">
-          <div className="relative max-w-2xl w-full max-h-[95vh] overflow-auto bg-white rounded-2xl shadow-2xl">
-            {/* Close Button */}
-            <button 
-              onClick={closeModal}
-              className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition-colors duration-300 z-10"
-              aria-label="Close modal"
-            >
-              <i className="fas fa-times text-gray-600 text-xl"></i>
-            </button>
-            
-            {/* Modal Header */}
-            <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 rounded-t-2xl">
-              <h3 className="text-2xl font-bold mb-2">Get In Touch</h3>
-              <p className="text-blue-100">Fill out the form below and we'll get back to you shortly</p>
+      {/* First-Visit Disclaimer Dialog */}
+      {isDisclaimerOpen && (
+        <div className="fixed inset-x-0 top-24 bottom-0 bg-black bg-opacity-80 flex items-start justify-center z-50 p-6 pt-8">
+          <div className="relative max-w-3xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden max-h-[calc(100vh-6rem)]">
+            <div className="bg-blue-700 text-white px-6 py-5">
+              <h2 id="disclaimer-title" className="text-2xl font-bold">Disclaimer</h2>
             </div>
-            
-            {/* Iframe Container */}
-            <div className="p-6">
-              <div className="relative pb-[70%] h-0 md:pb-[75%] lg:pb-[80%]">
-                <iframe
-                  src="https://form.nestoriagroup.com"
-                  className="absolute top-0 left-0 w-full h-full rounded-lg border-0"
-                  title="Lead Form"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
+            <div className="p-6 space-y-4 text-gray-700 overflow-y-auto max-h-[70vh]">
+              <p className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">Nestoria Buildcon Pvt. Ltd. is a rapidly growing real estate company specializing in Dholera Smart City. We have earned a reputation for trust, transparency, and customer-centric solutions over our 15-year presence in the industry.</p>
+              <p>The content displayed on our website(s), including images, renderings, copy, and other materials collectively referred to as "Website Content," are purely indicative and artistic in nature. They do not represent actual buildings, landscapes, or facilities. The Website Content was created prior to the implementation of relevant regulations and may include content related to future project phases or different projects altogether.</p>
+              <p>Until the Website Content is fully updated, it should not be considered as an advertisement, invitation, solicitation, offer, or sale of any product offerings. We disclaim any responsibility for any consequences arising from actions taken by individuals or authorities relying on the provided material/information.</p>
+              <p>The primary purpose of the Website Content is to support the government's initiative to develop the Dholera Greenfield region into a sophisticated smart city. We advise investors to independently verify all details, including area, services, sales and payment terms, and other relevant information with the Nestoria Buildcon Pvt. Ltd. Sales Team Only.</p>
+              <p>We strongly recommend avoiding unauthorized or unverified websites/brokers (online/offline) for information on Nestoria Buildcon Pvt. Ltd. projects. Information about projects displayed on the website(s) is indicative and for reference purposes only. Artist's impressions, products, features, etc., are presented as illustrations and for reference only.</p>
+              <p>The actual land parcels and final prices of the mentioned plots may differ due to future alterations. While we have made every effort to ensure the accuracy of the website, Nestoria Buildcon Pvt. Ltd. shall not be liable for any loss, claim, damage, errors, directly or indirectly, consequential or incidental, suffered by any person due to the use or inability to use this website.</p>
+              <p className="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400 font-medium">Please note that this disclaimer is intended to provide general information and should not be considered legal advice. It is advisable to consult legal professionals for specific advice and clarification regarding relevant regulations.</p>
             </div>
-            
-            {/* Modal Footer */}
-            <div className="bg-gray-50 px-6 py-4 rounded-b-2xl border-t border-gray-200">
-              <p className="text-sm text-gray-600 text-center">
-                <i className="fas fa-lock mr-2"></i>
-                Your information is secure and will not be shared.
-              </p>
+            <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3">
+              <button
+                type="button"
+                onClick={closeDisclaimer}
+                className="bg-blue-700 hover:bg-blue-800 text-white font-semibold px-5 py-3 rounded-full transition-colors duration-200"
+              >
+                I Understand
+              </button>
             </div>
           </div>
         </div>
       )}
 
-
       {/* Hero Section with Video Background */}
-      
+
       <section className="relative w-full h-screen overflow-hidden">
         {/* Video Background */}
         <video
@@ -137,10 +105,10 @@ function Home() {
           className="absolute inset-0 min-w-full min-h-full object-cover"
           style={{ objectPosition: 'center' }}
         >
-          <source src="https://nestoriagroup.com/hero.mp4" type="video/mp4" />
+          <source src="https://videos.pexels.com/video-files/37368568/15827454_2560_1440_30fps.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        
+
         {/* Overlay for better text readability */}
         <div className="absolute inset-0 bg-black/30"></div>
       </section>
@@ -149,7 +117,7 @@ function Home() {
       <section className="relative bg-gray-50 py-16 sm:py-20 md:py-32">
         <div className="max-w-6xl mx-auto px-4 text-center ">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-blue-900 mb-4 md:mb-6 animate-slide-up font-condor leading-tight drop-shadow-[0_0_10px_rgba(255,255,255,0.9)] text-center">
-            Leading Real Estate Developer in <span className="text-blue-200"> Dholera SIR </span> 
+            Leading Real Estate Developer in <span className="text-blue-200"> Dholera SIR </span>
           </h1>
           <div className="h-1 w-24 sm:w-32 bg-blue-600 mx-auto mb-6 md:mb-8 animate-slide-up"></div>
           <p className="text-base sm:text-lg md:text-xl text-dark/90 mb-8 md:mb-10 animate-slide-up opacity-0 animation-delay-300 max-w-3xl mx-auto leading-relaxed drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
@@ -179,7 +147,7 @@ function Home() {
           </div>
         </div>
       </section>
-      
+
 
       {/* About Section */}
       <section id="about" className="py-12 sm:py-16 md:py-24 bg-gray-50">
@@ -234,8 +202,8 @@ function Home() {
                       desc: "Transparent process",
                       icon: "fas fa-file-contract"
                     },
-                    { 
-                      title: "Investment Advisory", 
+                    {
+                      title: "Investment Advisory",
                       desc: "Expert guidance",
                       icon: "fas fa-chart-line"
                     },
@@ -260,7 +228,7 @@ function Home() {
                 </div>
                 <Link
                   to="/about"
-                className="group inline-flex items-center bg-blue-700 hover:bg-blue-800 text-white font-bold py-4 px-6 sm:py-4 sm:px-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 text-sm sm:text-base min-h-[44px]"
+                  className="group inline-flex items-center bg-blue-700 hover:bg-blue-800 text-white font-bold py-4 px-6 sm:py-4 sm:px-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 text-sm sm:text-base min-h-[44px]"
                   aria-label="Discover More About Nestoria"
                 >
                   <span>Discover More</span>
@@ -272,7 +240,7 @@ function Home() {
         </div>
       </section>
 
-      
+
 
       {/* Services Section */}
       <section
@@ -280,72 +248,72 @@ function Home() {
         className="bg-blue-600 text-white relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-black/20"></div>
-        
-          <div className="container mx-auto px-4 py-16 md:py-24 lg:py-32 ">
-            <div className="text-center max-w-4xl mx-auto mb-12 md:mb-20">
-              <h6 className="text-blue-900 font-semibold text-lg md:text-xl mb-4 uppercase tracking-wider">
-                What We Offer
-              </h6>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-                Our <span className="text-blue-200">Services</span>
-              </h2>
-              <div className="h-1 w-32 bg-blue-500 mx-auto mb-8"></div>
-              <p className="text-whiteg md:text-xl leading-relaxed">
-                We offer comprehensive real estate services tailored to meet
-                your investment needs in Dholera SIR with world-class infrastructure and unlimited growth potential.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {[
-                {
-                  icon: "fas fa-home",
-                  title: "Residential Properties",
-                  desc: "Premium residential properties in strategic locations with excellent appreciation potential and modern amenities.",
-                  color: "blue"
-                },
-                {
-                  icon: "fas fa-building",
-                  title: "Commercial Properties",
-                  desc: "High-potential commercial properties in Dholera's developing business districts with excellent ROI.",
-                  color: "green"
-                },
-                {
-                  icon: "fas fa-industry",
-                  title: "Industrial Properties",
-                  desc: "Strategic industrial properties in Dholera SIR with excellent connectivity and infrastructure support.",
-                  color: "purple"
-                },
-              ].map((item, i) => (
-                <div
-                  key={i}
-                  className="group bg-white/10 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/20 transform transition-all duration-500 hover:-translate-y-4 hover:shadow-3xl hover:bg-white/20"
-                >
-                  <div className={`bg-blue-600 rounded-2xl w-20 h-20 flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                    <i
-                      className={`${item.icon} text-2xl text-white`}
-                    ></i>
-                  </div>
-                  <h4 className="text-xl md:text-2xl font-bold text-center mb-4 group-hover:text-blue-300 transition-colors duration-300">
-                    {item.title}
-                  </h4>
-                  <p className="text-gray-200 mb-6 text-center leading-relaxed">
-                    {item.desc}
-                  </p>
-                  <div className="text-center">
-                    <Link
-                      to="/services"
-                      className="group/btn inline-flex items-center text-blue-300 hover:text-white font-semibold border-2 border-blue-300 hover:border-white rounded-full py-4 px-8 transition-all duration-300 hover:bg-white/10 backdrop-blur-sm min-h-[44px]"
-                      aria-label={`Learn More About ${item.title}`}
-                    >
-                      <span>Learn More</span>
-                      <i className="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform duration-300"></i>
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
+
+        <div className="container mx-auto px-4 py-16 md:py-24 lg:py-32 ">
+          <div className="text-center max-w-4xl mx-auto mb-12 md:mb-20">
+            <h6 className="text-blue-900 font-semibold text-lg md:text-xl mb-4 uppercase tracking-wider">
+              What We Offer
+            </h6>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+              Our <span className="text-blue-200">Services</span>
+            </h2>
+            <div className="h-1 w-32 bg-blue-500 mx-auto mb-8"></div>
+            <p className="text-whiteg md:text-xl leading-relaxed">
+              We offer comprehensive real estate services tailored to meet
+              your investment needs in Dholera SIR with world-class infrastructure and unlimited growth potential.
+            </p>
           </div>
-       
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {[
+              {
+                icon: "fas fa-home",
+                title: "Residential Properties",
+                desc: "Premium residential properties in strategic locations with excellent appreciation potential and modern amenities.",
+                color: "blue"
+              },
+              {
+                icon: "fas fa-building",
+                title: "Commercial Properties",
+                desc: "High-potential commercial properties in Dholera's developing business districts with excellent ROI.",
+                color: "green"
+              },
+              {
+                icon: "fas fa-industry",
+                title: "Industrial Properties",
+                desc: "Strategic industrial properties in Dholera SIR with excellent connectivity and infrastructure support.",
+                color: "purple"
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="group bg-white/10 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-white/20 transform transition-all duration-500 hover:-translate-y-4 hover:shadow-3xl hover:bg-white/20"
+              >
+                <div className={`bg-blue-600 rounded-2xl w-20 h-20 flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                  <i
+                    className={`${item.icon} text-2xl text-white`}
+                  ></i>
+                </div>
+                <h4 className="text-xl md:text-2xl font-bold text-center mb-4 group-hover:text-blue-300 transition-colors duration-300">
+                  {item.title}
+                </h4>
+                <p className="text-gray-200 mb-6 text-center leading-relaxed">
+                  {item.desc}
+                </p>
+                <div className="text-center">
+                  <Link
+                    to="/services"
+                    className="group/btn inline-flex items-center text-blue-300 hover:text-white font-semibold border-2 border-blue-300 hover:border-white rounded-full py-4 px-8 transition-all duration-300 hover:bg-white/10 backdrop-blur-sm min-h-[44px]"
+                    aria-label={`Learn More About ${item.title}`}
+                  >
+                    <span>Learn More</span>
+                    <i className="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform duration-300"></i>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </section>
 
       {/* Why Dholera SIR Section */}
@@ -358,7 +326,7 @@ function Home() {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
               Why <span className="text-blue-600">Dholera SIR</span>
             </h2>
-              <div className="h-1 w-32 bg-blue-600 mx-auto mb-8"></div>
+            <div className="h-1 w-32 bg-blue-600 mx-auto mb-8"></div>
             <p className="text-gray-700 text-lg md:text-xl leading-relaxed">
               Dholera Special Investment Region (SIR) is India's first planned
               smart city and a global manufacturing hub with unlimited growth potential.
@@ -410,8 +378,8 @@ function Home() {
         </div>
       </section>
 
-     
-      
+
+
 
       {/* Project Logos Marquee Section */}
       <section className="py-12 md:py-16 bg-white overflow-hidden">
@@ -425,7 +393,7 @@ function Home() {
             </h2>
             <div className="h-1 w-32 bg-blue-600 mx-auto"></div>
           </div>
-          
+
           {/* Marquee Container */}
           <div className="relative w-full overflow-hidden">
             <div className="flex animate-marquee">
@@ -437,19 +405,19 @@ function Home() {
                   orchidVillaGoldLogo,
                   nestoriaHomesLogo
                 ].map((logoSrc, index) => (
-                  <div 
+                  <div
                     key={index}
                     className="flex-shrink-0 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 md:p-8 border-2 border-gray-100 hover:border-blue-300 group cursor-pointer"
                   >
-                    <img 
-                      src={logoSrc} 
+                    <img
+                      src={logoSrc}
                       alt={`Project Logo ${index + 1}`}
                       className="w-[150px] md:w-[200px] h-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
                     />
                   </div>
                 ))}
               </div>
-              
+
               {/* Duplicate set for seamless loop */}
               <div className="flex items-center gap-8 md:gap-16 px-4" style={{ minWidth: 'max-content' }}>
                 {[
@@ -458,12 +426,12 @@ function Home() {
                   orchidVillaGoldLogo,
                   nestoriaHomesLogo
                 ].map((logoSrc, index) => (
-                  <div 
+                  <div
                     key={`dup-${index}`}
                     className="flex-shrink-0 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 md:p-8 border-2 border-gray-100 hover:border-blue-300 group cursor-pointer"
                   >
-                    <img 
-                      src={logoSrc} 
+                    <img
+                      src={logoSrc}
                       alt={`Project Logo ${index + 1}`}
                       className="w-[150px] md:w-[200px] h-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
                     />
@@ -507,82 +475,62 @@ function Home() {
         </div>
       </section>
 
-      {/* Spotlight Newsletter Section */}
+
       <section className="py-16 md:py-24 bg-gradient-to-br from-blue-600 to-blue-800">
         <div className="container mx-auto px-4">
           {/* Section Header */}
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-              SPOTLIGHT - Newsletter
+              HIGHLIGHTS
             </h2>
             <div className="h-1 w-24 sm:w-32 bg-white mx-auto"></div>
           </div>
 
           {/* Newsletter Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Newsletter Vol 3 */}
-            <div 
-              className="group cursor-pointer"
-              onClick={() => window.open('https://nestoriagroup.com/DholeraSIR.pdf', '_blank')}
+          <div className="flex justify-center px-4">
+            {/* Newsletter Card */}
+            <div
+              className="group cursor-pointer w-full max-w-md"
+              onClick={() =>
+                window.open(
+                  'https://nestoriagroup.com/NestoriaGroupProfile.pdf',
+                  '_blank'
+                )
+              }
             >
-              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 transform hover:-translate-y-2 h-full flex flex-col">
-                <div className="relative overflow-hidden">
-                  <img 
-                    src="https://nestoriagroup.com/DholeraSIR.jpg" 
-                    alt="Spotlight Newsletter Vol 3" 
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="p-6 flex-grow flex flex-col justify-between">
-                  <div>
-                    
-                    <p className="text-gray-600 text-sm mb-4">
-                      Dholera SIR - India's First Smart City
-                    </p>
-                  </div>
-                  <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open('https://nestoriagroup.com/DholeraSIR.pdf', '_blank');
-                    }}
-                    className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg w-full"
-                  >
-                    <i className="fas fa-file-pdf mr-2"></i>
-                    Download PDF
-                    <i className="fas fa-arrow-right ml-2"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
+              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 transform hover:-translate-y-2 flex flex-col h-full">
 
-            {/* Newsletter Vol 2 */}
-            <div 
-              className="group cursor-pointer"
-              onClick={() => window.open('https://nestoriagroup.com/NestoriaGroupProfile.pdf', '_blank')}
-            >
-              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 transform hover:-translate-y-2 h-full flex flex-col">
-                <div className="relative overflow-hidden">
-                  <img 
-                    src="https://nestoriagroup.com/NestoriaGroupProfile.jpg" 
-                    alt="Spotlight Newsletter Vol 2" 
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700"
+                {/* Image Section */}
+                <div className="relative w-full h-64 overflow-hidden bg-gray-100 flex items-center justify-center">
+                  <img
+                    src="https://nestoriagroup.com/NestoriaGroupProfile.jpg"
+                    alt="Nestoria Group Profile"
+                    className="w-full h-full object-center object-center group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
                   />
                 </div>
-                <div className="p-6 flex-grow flex flex-col justify-between">
+
+                {/* Content */}
+                <div className="p-6 flex flex-col flex-grow justify-between text-center">
                   <div>
-                    
-                    <p className="text-gray-600 text-sm mb-4">
-                      Nestoria Group Profile & Achievements
+                    <h3 className="text-xl font-bold text-gray-800 mb-2">
+                      Nestoria Group Profile
+                    </h3>
+
+                    <p className="text-gray-600 text-sm mb-5">
+                      Company Profile & Achievements
                     </p>
                   </div>
-                  <button 
+
+                  <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      window.open('https://nestoriagroup.com/NestoriaGroupProfile.pdf', '_blank');
+                      window.open(
+                        'https://nestoriagroup.com/NestoriaGroupProfile.pdf',
+                        '_blank'
+                      );
                     }}
-                    className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg w-full"
+                    className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg w-full"
                   >
                     <i className="fas fa-file-pdf mr-2"></i>
                     Download PDF
@@ -595,8 +543,8 @@ function Home() {
 
           {/* View All Link */}
           <div className="text-center mt-12">
-            <a 
-              href="#" 
+            <a
+              href="#"
               className="inline-flex items-center text-white hover:text-blue-100 font-bold text-lg transition-colors duration-300 group"
             >
               View All Newsletters
@@ -621,7 +569,7 @@ function Home() {
           </div>
 
           <div className="max-w-full mx-auto px-4">
-            <RingSlider 
+            <RingSlider
               images={[
                 slider1,
                 slider2,
@@ -636,40 +584,40 @@ function Home() {
       </section>
 
       {/* Call to Action Section */}
-      
-        <div className="container mx-auto px-4 text-center relative z-10 md:py-32">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight">
-              Ready to Invest in Your <span className="text-blue-300">Future</span>?
-            </h2>
-            <div className="h-1 w-32 bg-white mx-auto mb-8"></div>
-            <p className="text-lg md:text-xl lg:text-2xl mb-10 max-w-3xl mx-auto text-white/90 leading-relaxed">
-              Our experts are ready to guide you through the best investment
-              opportunities in Dholera SIR with personalized solutions and expert advice.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-6">
-              <Link
-                to="/contact"
-                className="group bg-blue-700 hover:bg-blue-800 text-white font-bold py-4 px-8 md:px-12 rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 text-lg min-h-[44px]"
-              >
-                <span className="flex items-center justify-center">
-                  <i className="fas fa-phone mr-2"></i>
-                  Contact Our Experts
-                </span>
-              </Link>
-              <Link
-                to="/land-deals"
-                className="group bg-transparent hover:bg-white/10 text-white font-bold py-4 px-8 md:px-12 border-2 border-white hover:border-blue-300 rounded-lg transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 text-lg backdrop-blur-sm min-h-[44px]"
-              >
-                <span className="flex items-center justify-center">
-                  <i className="fas fa-search mr-2"></i>
-                  View Properties
-                </span>
-              </Link>
-            </div>
+
+      <div className="container mx-auto px-4 text-center relative z-10 md:py-32">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 text-white leading-tight">
+            Ready to Invest in Your <span className="text-blue-300">Future</span>?
+          </h2>
+          <div className="h-1 w-32 bg-white mx-auto mb-8"></div>
+          <p className="text-lg md:text-xl lg:text-2xl mb-10 max-w-3xl mx-auto text-white/90 leading-relaxed">
+            Our experts are ready to guide you through the best investment
+            opportunities in Dholera SIR with personalized solutions and expert advice.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-6">
+            <Link
+              to="/contact"
+              className="group bg-blue-700 hover:bg-blue-800 text-white font-bold py-4 px-8 md:px-12 rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 text-lg min-h-[44px]"
+            >
+              <span className="flex items-center justify-center">
+                <i className="fas fa-phone mr-2"></i>
+                Contact Our Experts
+              </span>
+            </Link>
+            <Link
+              to="/land-deals"
+              className="group bg-transparent hover:bg-white/10 text-white font-bold py-4 px-8 md:px-12 border-2 border-white hover:border-blue-300 rounded-lg transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 text-lg backdrop-blur-sm min-h-[44px]"
+            >
+              <span className="flex items-center justify-center">
+                <i className="fas fa-search mr-2"></i>
+                View Properties
+              </span>
+            </Link>
           </div>
         </div>
-     
+      </div>
+
 
       {/* Executive Team Section */}
       <section className="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-white">
@@ -680,7 +628,7 @@ function Home() {
               Visinory Leadership
             </h6> */}
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-               Visinory  <span className="text-blue-600"> Leadership</span>
+              Visinory  <span className="text-blue-600"> Leadership</span>
             </h2>
             <div className="h-1 w-32 bg-blue-600 mx-auto mb-8"></div>
             {/* <p className="text-gray-700 text-lg md:text-xl leading-relaxed">
@@ -693,30 +641,30 @@ function Home() {
             {/* Team Member 1 */}
             <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
               <div className="relative overflow-hidden">
-                <img 
-                  src={shivji} 
-                  alt="ShivKumar Singh Tomar  Ji - Director" 
+                <img
+                  src={shivji}
+                  alt="ShivKumar Singh Tomar  Ji - Director"
                   className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
               <div className="p-6 text-center">
                 <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">
-                 ShivKumar Singh Tomar
+                  ShivKumar Singh Tomar
                 </h3>
                 <p className="text-blue-600 font-semibold mb-4 uppercase tracking-wide text-sm">
-                 Chairman
+                  Chairman
                 </p>
-                
+
               </div>
             </div>
 
             {/* Team Member 2 */}
             <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
               <div className="relative overflow-hidden">
-                <img 
-                  src={mohanji} 
-                  alt="Mohan singh Tomar CEO of the company" 
+                <img
+                  src={mohanji}
+                  alt="Mohan singh Tomar CEO of the company"
                   className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -727,16 +675,16 @@ function Home() {
                 <p className="text-blue-600 font-semibold mb-4 uppercase tracking-wide text-sm">
                   Chief Executive Officer (CEO)
                 </p>
-               
+
               </div>
             </div>
 
             {/* Team Member 3 */}
             <div className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
               <div className="relative overflow-hidden">
-                <img 
-                  src={nitinji} 
-                  alt="Nitin Singh Tomar Managing Director Of the company" 
+                <img
+                  src={nitinji}
+                  alt="Nitin Singh Tomar Managing Director Of the company"
                   className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -748,7 +696,7 @@ function Home() {
                 <p className="text-blue-600 font-semibold mb-4 uppercase tracking-wide text-sm">
                   Managing Director
                 </p>
-                
+
               </div>
             </div>
           </div>
@@ -788,7 +736,7 @@ function Home() {
         </div>
       </section>
 
-      
+
 
       {/* Newsletter Section */}
       {/* <section className="py-12 md:py-16 bg-gray-100">
@@ -848,7 +796,7 @@ function Home() {
       </section> */}
 
       {/* Parallax Scroll Showcase */}
-      
+
       {/* Sticky Bottom Stats Bar */}
       {/* <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-gray-900 to-blue-900 text-white z-50 py-3 shadow-lg">
         <div className="container mx-auto px-4">

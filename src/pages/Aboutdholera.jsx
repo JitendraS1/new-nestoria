@@ -8,12 +8,6 @@ import futuredholera from '/src/assets/img/futuredholera.webp'
 import dholeraconnectivity from '/src/assets/img/dholeraconnectivity.webp'
 
 function Aboutdholera() {
-  // Typewriter effect state
-  const [searchValue, setSearchValue] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [showCursor, setShowCursor] = useState(true);
-  
   // Form state
   const [formData, setFormData] = useState({
     name: '',
@@ -26,49 +20,6 @@ function Aboutdholera() {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
-  
-  // Typewriter effect
-  useEffect(() => {
-    const targetText = 'https://dholera.gujarat.gov.in/';
-    const typingSpeed = 100; // Speed of typing
-    const deletingSpeed = 50; // Speed of deleting
-    const pauseDuration = 1500; // Pause duration before deleting
-    
-    const timer = setTimeout(() => {
-      if (!isDeleting) {
-        // Typing phase
-        setSearchValue(targetText.substring(0, currentIndex + 1));
-        setCurrentIndex(prev => prev + 1);
-        
-        if (currentIndex === targetText.length) {
-          // Finished typing, pause then start deleting
-          setTimeout(() => {
-            setIsDeleting(true);
-          }, pauseDuration);
-        }
-      } else {
-        // Deleting phase
-        setSearchValue(targetText.substring(0, currentIndex - 1));
-        setCurrentIndex(prev => prev - 1);
-        
-        if (currentIndex === 0) {
-          // Finished deleting, start typing again
-          setIsDeleting(false);
-        }
-      }
-    }, isDeleting ? deletingSpeed : typingSpeed);
-    
-    return () => clearTimeout(timer);
-  }, [currentIndex, isDeleting]);
-  
-  // Cursor blinking effect
-  useEffect(() => {
-    const cursorTimer = setInterval(() => {
-      setShowCursor(prev => !prev);
-    }, 500);
-    
-    return () => clearInterval(cursorTimer);
-  }, []);
   
   // Handle form input changes
   const handleChange = (e) => {
@@ -150,67 +101,12 @@ function Aboutdholera() {
       }
     }
   };
-  // Function to handle search click
-  const handleSearchClick = () => {
-    // Add animation class
-    const searchInput = document.getElementById('dholera-search-input');
-    if (searchInput) {
-      searchInput.classList.add('animate-pulse');
-      
-      // Remove animation class after animation completes
-      setTimeout(() => {
-        searchInput.classList.remove('animate-pulse');
-      }, 500);
-    }
-    
-    // Redirect after a short delay to show the animation
-    setTimeout(() => {
-      window.open('https://dholera.gujarat.gov.in/', '_blank');
-    }, 300);
-  };
-  
   return (
     <>
      
 
       {/* Header Start */}
        <div className="relative bg-blue-600 text-white py-16 sm:py-20 md:py-32 overflow-hidden">
-         {/* Google-like Search Bar */}
-         
-         <section className="py-8 md:py-12 bg-gradient-to-b ">
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto">
-            <div className="flex flex-col items-center">
-              <div className="w-full relative">
-                <div className="flex items-center bg-white border-2 border-blue-200 rounded-full px-6 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 focus-within:shadow-2xl focus-within:border-blue-500 transform hover:scale-[1.02]">
-                  <i className="fas fa-search text-blue-500 text-xl mr-4"></i>
-                  <input
-                    type="text"
-                    id="dholera-search-input"
-                    value={searchValue}
-                    readOnly
-                    className="w-full outline-none text-lg bg-transparent text-gray-700 font-medium"
-                    placeholder="Search Dholera SIR..."
-                  />
-                  {showCursor && (
-                    <span className="ml-1 text-blue-600 text-xl font-bold animate-pulse">|</span>
-                  )}
-                  <button 
-                    onClick={handleSearchClick}
-                    className="ml-4 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-full p-3 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center"
-                    aria-label="Search"
-                  >
-                    <i className="fas fa-external-link-alt text-lg"></i>
-                  </button>
-                </div>
-                <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-sm text-white italic">
-                  Click to visit official Dholera SIR website
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
        
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-6xl mx-auto text-center">
@@ -298,15 +194,15 @@ function Aboutdholera() {
                   </div>
                 ))}
               </div>
-              {/* <Link 
+              <Link 
                 to="/land-deals" 
                 className="group inline-flex items-center bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-0"
                 aria-label="Explore Land Deals"
               >
                 <span>Explore Opportunities</span>
                 <i className="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
-              </Link> */}
-              <a
+              </Link>
+              {/* <a
                 href="https://dholera.gujarat.gov.in/dholera_virtual_tours/static/src/Dholera%20SIR/data/index.htm"
                 className="group inline-flex items-center bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-8 rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 focus:outline-none focus:ring-0"
                 aria-label="Virtual Tour" target="_blank"
@@ -315,7 +211,7 @@ function Aboutdholera() {
                   <i className="fas fa-street-view"></i>
                   Virtual Tour
                 </span>
-              </a>
+              </a> */}
               
             </div>
             <div className="w-full lg:w-1/2">
@@ -342,18 +238,18 @@ function Aboutdholera() {
       </section>
       
       {/* What Sets Us Apart Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-white relative">
-        <div className="container mx-auto px-4">
+      {/* <section className="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-white relative">
+        <div className="container mx-auto px-4"> */}
           {/* Section Header */}
-          <div className="text-center mb-12">
+          {/* <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-900 mb-4">
               What Sets Us Apart...
             </h2>
             <div className="h-1 w-32 bg-blue-600 mx-auto"></div>
-          </div>
+          </div> */}
 
           {/* Features Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+          {/* <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
             {[
               {
                 icon: "https://dholera.gujarat.gov.in/dicdl_web_portal/static/src/img/smart_icons/dicdl_worldclass_infrastructure.png",
@@ -437,16 +333,16 @@ function Aboutdholera() {
                 </a>
               </div>
             ))}
-          </div>
+          </div> */}
           
           {/* Source Credit */}
-          <div className="mt-8 text-right">
+          {/* <div className="mt-8 text-right">
             <p className="text-sm text-gray-500 italic">
               Source: <a href="https://dholera.gujarat.gov.in/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-300">DICDL</a>
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
 
       {/* Dholera SIR Tabs Section */}
