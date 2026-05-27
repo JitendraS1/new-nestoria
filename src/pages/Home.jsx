@@ -66,32 +66,66 @@ function Home() {
     <div className="overflow-hidden bg-primary-900">
       {/* First-Visit Disclaimer Dialog */}
       {isDisclaimerOpen && (
-        <div className="fixed inset-x-0 top-24 bottom-0 bg-black bg-opacity-80 flex items-start justify-center z-50 p-6 pt-8">
-          <div className="relative max-w-3xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden max-h-[calc(100vh-6rem)]">
-            <div className="bg-blue-700 text-white px-6 py-5">
-              <h2 id="disclaimer-title" className="text-2xl font-bold">Disclaimer</h2>
-            </div>
-            <div className="p-6 space-y-4 text-gray-700 overflow-y-auto max-h-[70vh]">
-              <p className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">Nestoria Buildcon Pvt. Ltd. is a rapidly growing real estate company specializing in Dholera Smart City. We have earned a reputation for trust, transparency, and customer-centric solutions over our 15-year presence in the industry.</p>
-              <p>The content displayed on our website(s), including images, renderings, copy, and other materials collectively referred to as "Website Content," are purely indicative and artistic in nature. They do not represent actual buildings, landscapes, or facilities. The Website Content was created prior to the implementation of relevant regulations and may include content related to future project phases or different projects altogether.</p>
-              <p>Until the Website Content is fully updated, it should not be considered as an advertisement, invitation, solicitation, offer, or sale of any product offerings. We disclaim any responsibility for any consequences arising from actions taken by individuals or authorities relying on the provided material/information.</p>
-              <p>The primary purpose of the Website Content is to support the government's initiative to develop the Dholera Greenfield region into a sophisticated smart city. We advise investors to independently verify all details, including area, services, sales and payment terms, and other relevant information with the Nestoria Buildcon Pvt. Ltd. Sales Team Only.</p>
-              <p>We strongly recommend avoiding unauthorized or unverified websites/brokers (online/offline) for information on Nestoria Buildcon Pvt. Ltd. projects. Information about projects displayed on the website(s) is indicative and for reference purposes only. Artist's impressions, products, features, etc., are presented as illustrations and for reference only.</p>
-              <p>The actual land parcels and final prices of the mentioned plots may differ due to future alterations. While we have made every effort to ensure the accuracy of the website, Nestoria Buildcon Pvt. Ltd. shall not be liable for any loss, claim, damage, errors, directly or indirectly, consequential or incidental, suffered by any person due to the use or inability to use this website.</p>
-              <p className="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400 font-medium">Please note that this disclaimer is intended to provide general information and should not be considered legal advice. It is advisable to consult legal professionals for specific advice and clarification regarding relevant regulations.</p>
-            </div>
-            <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3">
-              <button
-                type="button"
-                onClick={closeDisclaimer}
-                className="bg-blue-700 hover:bg-blue-800 text-white font-semibold px-5 py-3 rounded-full transition-colors duration-200"
-              >
-                I Understand
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+  <div className="fixed inset-x-0 top-20 bottom-0 bg-black/80 flex items-start justify-center z-50 p-3 sm:p-4 md:p-6 overflow-y-auto">
+    
+    {/* Modal Container */}
+    <div className="relative mt-2 sm:mt-4 w-full max-w-3xl bg-white rounded-2xl sm:rounded-3xl shadow-2xl flex flex-col max-h-[80vh] overflow-hidden">
+      
+      {/* Header */}
+      <div className="bg-blue-700 text-white px-4 sm:px-6 py-3 sm:py-4 shrink-0">
+        <h2
+          id="disclaimer-title"
+          className="text-lg sm:text-xl md:text-2xl font-bold"
+        >
+          Disclaimer
+        </h2>
+      </div>
+
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 text-sm sm:text-base text-gray-700">
+        
+        <p className="bg-blue-50 p-3 sm:p-4 rounded-lg border-l-4 border-blue-400">
+          Nestoria Buildcon Pvt. Ltd. is a rapidly growing real estate company specializing in Dholera Smart City. We have earned a reputation for trust, transparency, and customer-centric solutions over our 15-year presence in the industry.
+        </p>
+
+        <p>
+          The content displayed on our website(s), including images, renderings, copy, and other materials collectively referred to as "Website Content," are purely indicative and artistic in nature.
+        </p>
+
+        <p>
+          Until the Website Content is fully updated, it should not be considered as an advertisement, invitation, solicitation, offer, or sale of any product offerings.
+        </p>
+
+        <p>
+          The primary purpose of the Website Content is to support the government's initiative to develop the Dholera Greenfield region into a sophisticated smart city.
+        </p>
+
+        <p>
+          We strongly recommend avoiding unauthorized or unverified websites/brokers (online/offline) for information on Nestoria Buildcon Pvt. Ltd. projects.
+        </p>
+
+        <p>
+          The actual land parcels and final prices of the mentioned plots may differ due to future alterations.
+        </p>
+
+        <p className="bg-yellow-50 p-3 sm:p-4 rounded-lg border-l-4 border-yellow-400 font-medium">
+          Please note that this disclaimer is intended to provide general information and should not be considered legal advice.
+        </p>
+      </div>
+
+      {/* Footer */}
+      <div className="bg-gray-50 px-4 sm:px-6 py-3 flex justify-center sm:justify-end shrink-0 border-t">
+        <button
+          type="button"
+          onClick={closeDisclaimer}
+          className="w-full sm:w-auto bg-blue-700 hover:bg-blue-800 text-white font-semibold px-6 py-2.5 rounded-full transition-all duration-200"
+        >
+          I Understand
+        </button>
+      </div>
+    </div>
+  </div>
+)}
 
       {/* Hero Section with Video Background */}
 
