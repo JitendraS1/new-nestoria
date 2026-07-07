@@ -18,8 +18,5 @@ Allow: /projects$
 Allow: /land-deals$
 Allow: /contact$
 
-# Host directive
-Host: nestoriagroup.com
-
 # Sitemap location
 Sitemap: https://nestoriagroup.com/sitemap.xml
